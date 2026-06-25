@@ -1,5 +1,7 @@
 # ModelCardSec: Automated Privacy and Security Risk Profiling for ML Models
 
+![ModelCardSec](headline.png)
+
 ModelCardSec is a small, reproducible research prototype that scans machine-learning models before deployment and generates a **security model card**. It produces metrics for robustness, membership-inference exposure, calibration, PII leakage, unsafe-output signals, and deployment-drift sensitivity.
 
 The project is designed to be easy to demo for a systems/security paper:
