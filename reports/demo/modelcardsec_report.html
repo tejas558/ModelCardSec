@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ModelCardSec Security Model Card</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 2rem; line-height: 1.5; color: #17202a; }
+    h1, h2, h3 { color: #111827; }
+    .card { border: 1px solid #d5d8dc; border-radius: 12px; padding: 1rem; margin: 1rem 0; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+    .summary-table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+    .summary-table th, .summary-table td { border: 1px solid #d5d8dc; padding: 0.45rem; text-align: left; }
+    .summary-table th { background: #f3f4f6; }
+    .risk-high { color: #a93226; font-weight: 700; }
+    .risk-medium { color: #a15c00; font-weight: 700; }
+    .risk-low { color: #145a32; font-weight: 700; }
+    code { background: #f4f4f5; padding: 0.1rem 0.25rem; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>ModelCardSec Security Model Card</h1>
+  <p><strong>Generated:</strong> 2026-06-25T04:05:30.171213+00:00</p>
+  <p>This report summarizes automated security and privacy checks. Risk scores are normalized from 0 to 100, where higher means more deployment risk.</p>
+
+  <h2>Executive summary</h2>
+  <table border="1" class="dataframe summary-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>model</th>
+      <th>dataset</th>
+      <th>aggregate_risk</th>
+      <th>risk_band</th>
+      <th>attack_success_proxy</th>
+      <th>robustness_risk</th>
+      <th>robustness_status</th>
+      <th>membership_risk</th>
+      <th>membership_status</th>
+      <th>calibration_risk</th>
+      <th>calibration_status</th>
+      <th>pii_risk</th>
+      <th>pii_status</th>
+      <th>unsafe_outputs_risk</th>
+      <th>unsafe_outputs_status</th>
+      <th>drift_risk</th>
+      <th>drift_status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Logistic Regression</td>
+      <td>breast_cancer</td>
+      <td>17.200</td>
+      <td>Low</td>
+      <td>0.034</td>
+      <td>3.158</td>
+      <td>ok</td>
+      <td>3.431</td>
+      <td>ok</td>
+      <td>4.697</td>
+      <td>ok</td>
+      <td>30.000</td>
+      <td>ok</td>
+      <td>33.333</td>
+      <td>ok</td>
+      <td>40.646</td>
+      <td>ok</td>
+    </tr>
+    <tr>
+      <td>Random Forest</td>
+      <td>breast_cancer</td>
+      <td>21.470</td>
+      <td>Low</td>
+      <td>0.136</td>
+      <td>7.135</td>
+      <td>ok</td>
+      <td>13.593</td>
+      <td>ok</td>
+      <td>14.434</td>
+      <td>ok</td>
+      <td>30.000</td>
+      <td>ok</td>
+      <td>33.333</td>
+      <td>ok</td>
+      <td>40.646</td>
+      <td>ok</td>
+    </tr>
+    <tr>
+      <td>Decision Tree</td>
+      <td>breast_cancer</td>
+      <td>19.240</td>
+      <td>Low</td>
+      <td>0.059</td>
+      <td>11.111</td>
+      <td>ok</td>
+      <td>0.000</td>
+      <td>ok</td>
+      <td>11.696</td>
+      <td>ok</td>
+      <td>30.000</td>
+      <td>ok</td>
+      <td>33.333</td>
+      <td>ok</td>
+      <td>40.646</td>
+      <td>ok</td>
+    </tr>
+  </tbody>
+</table>
+
+  <h2>Scanner details</h2>
+  
+  <section class="card">
+    <h3>Logistic Regression</h3>
+    
+    <p><strong>Dataset:</strong> breast_cancer</p>
+    <p><strong>Aggregate risk:</strong>
+      <span class="risk-low">17.20 (Low)</span>
+    </p>
+    <p><strong>Attack success proxy:</strong> 0.034</p>
+    
+      <h4>Robustness</h4>
+      <p><strong>Risk:</strong> 3.16; <strong>Status:</strong> ok</p>
+      <p><strong>Findings</strong></p>
+      <ul>
+      <li>Baseline accuracy: 0.977.</li><li>Noisy-input accuracy: 0.965.</li><li>Prediction flip rate under perturbation: 0.012.</li>
+      </ul>
+      <p><strong>Recommendations</strong></p>
+      <ul>
+      <li>Keep robustness checks in continuous evaluation as the data distribution changes.</li>
+      </ul>
+    
+      <h4>Membership</h4>
+      <p><strong>Risk:</strong> 3.43; <strong>Status:</strong> ok</p>
+      <p><strong>Findings</strong></p>
+      <ul>
+      <li>Confidence-based membership AUC: 0.483.</li><li>Membership advantage proxy: 0.034.</li><li>Train-test mean confidence gap: -0.002.</li>
+      </ul>
+      <p><strong>Recommendations</strong></p>
+      <ul>
+      <li>Continue tracking confidence gaps for each model release.</li>
+      </ul>
+    
+      <h4>Calibration</h4>
+      <p><strong>Risk:</strong> 4.70; <strong>Status:</strong> ok</p>
+      <p><strong>Findings</strong></p>
+      <ul>
+      <li>Expected calibration error: 0.019.</li><li>Brier score: 0.017.</li>
+      </ul>
+      <p><strong>Recommendations</strong></p>
+      <ul>
+      <li>Keep calibration in release gates, especially after retraining or data drift.</li>
+      </ul>
+    
+      <h4>Pii</h4>
+      <p><strong>Risk:</strong> 30.00; <strong>Status:</strong> ok</p>
+      <p><strong>Findings</strong></p>
+      <ul>
+      <li>PII-like patterns in sampled training text: {'email': 1, 'phone': 1, 'ssn': 0, 'credit_card_like': 0, 'ip_address': 0}.</li><li>PII-like patterns in sampled outputs: {'email': 1, 'phone': 0, 'ssn': 0, 'credit_card_like': 0, 'ip_address': 0}.</li><li>Exact training-output repeats: 0.</li>
+      </ul>
+      <p><strong>Recommendations</strong></p>
+      <ul>
+      <li>Maintain PII scans in data ingestion and output monitoring pipelines.</li>
+      </ul>
+    
+      <h4>Unsafe Outputs</h4>
+      <p><strong>Risk:</strong> 33.33; <strong>Status:</strong> ok</p>
+      <p><strong>Findings</strong></p>
+      <ul>
+      <li>Unsafe-output category hits: {'credential_exposure': 1, 'malware_or_intrusion': 0, 'self_harm': 0, 'unsafe_tool_use': 0}.</li><li>Example hits: credential_exposure: I found an api_key in the logs: do not expose it to users.</li>
+      </ul>
+      <p><strong>Recommendations</strong></p>
+      <ul>
+      <li>Continue red-team prompt evaluation for every prompt/template or model change.</li>
+      </ul>
+    
+      <h4>Drift</h4>
+      <p><strong>Risk:</strong> 40.65; <strong>Status:</strong> ok</p>
+      <p><strong>Findings</strong></p>
+      <ul>
+      <li>Maximum feature PSI: 0.203.</li><li>Mean feature PSI: 0.082.</li><li>Top drifted features: mean radius=0.203, symmetry error=0.173, smoothness error=0.168, mean perimeter=0.167, mean area=0.145</li>
+      </ul>
+      <p><strong>Recommendations</strong></p>
+      <ul>
+      <li>Review moderate drift and evaluate model performance on the shifted slice.</li>
+      </ul>
+    
+  </section>
+  
+  <section class="card">
+    <h3>Random Forest</h3>
+    
+    <p><strong>Dataset:</strong> breast_cancer</p>
+    <p><strong>Aggregate risk:</strong>
+      <span class="risk-low">21.47 (Low)</span>
+    </p>
+    <p><strong>Attack success proxy:</strong> 0.136</p>
+    
+      <h4>Robustness</h4>
+      <p><strong>Risk:</strong> 7.13; <strong>Status:</strong> ok</p>
+      <p><strong>Findings</strong></p>
+      <ul>
+      <li>Baseline accuracy: 0.971.</li><li>Noisy-input accuracy: 0.947.</li><li>Prediction flip rate under perturbation: 0.035.</li>
+      </ul>
+      <p><strong>Recommendations</strong></p>
+      <ul>
+      <li>Keep robustness checks in continuous evaluation as the data distribution changes.</li>
+      </ul>
+    
+      <h4>Membership</h4>
+      <p><strong>Risk:</strong> 13.59; <strong>Status:</strong> ok</p>
+      <p><strong>Findings</strong></p>
+      <ul>
+      <li>Confidence-based membership AUC: 0.568.</li><li>Membership advantage proxy: 0.136.</li><li>Train-test mean confidence gap: 0.024.</li>
+      </ul>
+      <p><strong>Recommendations</strong></p>
+      <ul>
+      <li>Continue tracking confidence gaps for each model release.</li>
+      </ul>
+    
+      <h4>Calibration</h4>
+      <p><strong>Risk:</strong> 14.43; <strong>Status:</strong> ok</p>
+      <p><strong>Findings</strong></p>
+      <ul>
+      <li>Expected calibration error: 0.058.</li><li>Brier score: 0.026.</li>
+      </ul>
+      <p><strong>Recommendations</strong></p>
+      <ul>
+      <li>Keep calibration in release gates, especially after retraining or data drift.</li>
+      </ul>
+    
+      <h4>Pii</h4>
+      <p><strong>Risk:</strong> 30.00; <strong>Status:</strong> ok</p>
+      <p><strong>Findings</strong></p>
+      <ul>
+      <li>PII-like patterns in sampled training text: {'email': 1, 'phone': 1, 'ssn': 0, 'credit_card_like': 0, 'ip_address': 0}.</li><li>PII-like patterns in sampled outputs: {'email': 1, 'phone': 0, 'ssn': 0, 'credit_card_like': 0, 'ip_address': 0}.</li><li>Exact training-output repeats: 0.</li>
+      </ul>
+      <p><strong>Recommendations</strong></p>
+      <ul>
+      <li>Maintain PII scans in data ingestion and output monitoring pipelines.</li>
+      </ul>
+    
+      <h4>Unsafe Outputs</h4>
+      <p><strong>Risk:</strong> 33.33; <strong>Status:</strong> ok</p>
+      <p><strong>Findings</strong></p>
+      <ul>
+      <li>Unsafe-output category hits: {'credential_exposure': 1, 'malware_or_intrusion': 0, 'self_harm': 0, 'unsafe_tool_use': 0}.</li><li>Example hits: credential_exposure: I found an api_key in the logs: do not expose it to users.</li>
+      </ul>
+      <p><strong>Recommendations</strong></p>
+      <ul>
+      <li>Continue red-team prompt evaluation for every prompt/template or model change.</li>
+      </ul>
+    
+      <h4>Drift</h4>
+      <p><strong>Risk:</strong> 40.65; <strong>Status:</strong> ok</p>
+      <p><strong>Findings</strong></p>
+      <ul>
+      <li>Maximum feature PSI: 0.203.</li><li>Mean feature PSI: 0.082.</li><li>Top drifted features: mean radius=0.203, symmetry error=0.173, smoothness error=0.168, mean perimeter=0.167, mean area=0.145</li>
+      </ul>
+      <p><strong>Recommendations</strong></p>
+      <ul>
+      <li>Review moderate drift and evaluate model performance on the shifted slice.</li>
+      </ul>
+    
+  </section>
+  
+  <section class="card">
+    <h3>Decision Tree</h3>
+    
+    <p><strong>Dataset:</strong> breast_cancer</p>
+    <p><strong>Aggregate risk:</strong>
+      <span class="risk-low">19.24 (Low)</span>
+    </p>
+    <p><strong>Attack success proxy:</strong> 0.059</p>
+    
+      <h4>Robustness</h4>
+      <p><strong>Risk:</strong> 11.11; <strong>Status:</strong> ok</p>
+      <p><strong>Findings</strong></p>
+      <ul>
+      <li>Baseline accuracy: 0.953.</li><li>Noisy-input accuracy: 0.918.</li><li>Prediction flip rate under perturbation: 0.058.</li>
+      </ul>
+      <p><strong>Recommendations</strong></p>
+      <ul>
+      <li>Keep robustness checks in continuous evaluation as the data distribution changes.</li>
+      </ul>
+    
+      <h4>Membership</h4>
+      <p><strong>Risk:</strong> 0.00; <strong>Status:</strong> ok</p>
+      <p><strong>Findings</strong></p>
+      <ul>
+      <li>Confidence-based membership AUC: 0.500.</li><li>Membership advantage proxy: 0.000.</li><li>Train-test mean confidence gap: 0.000.</li>
+      </ul>
+      <p><strong>Recommendations</strong></p>
+      <ul>
+      <li>Continue tracking confidence gaps for each model release.</li>
+      </ul>
+    
+      <h4>Calibration</h4>
+      <p><strong>Risk:</strong> 11.70; <strong>Status:</strong> ok</p>
+      <p><strong>Findings</strong></p>
+      <ul>
+      <li>Expected calibration error: 0.047.</li><li>Brier score: 0.047.</li>
+      </ul>
+      <p><strong>Recommendations</strong></p>
+      <ul>
+      <li>Keep calibration in release gates, especially after retraining or data drift.</li>
+      </ul>
+    
+      <h4>Pii</h4>
+      <p><strong>Risk:</strong> 30.00; <strong>Status:</strong> ok</p>
+      <p><strong>Findings</strong></p>
+      <ul>
+      <li>PII-like patterns in sampled training text: {'email': 1, 'phone': 1, 'ssn': 0, 'credit_card_like': 0, 'ip_address': 0}.</li><li>PII-like patterns in sampled outputs: {'email': 1, 'phone': 0, 'ssn': 0, 'credit_card_like': 0, 'ip_address': 0}.</li><li>Exact training-output repeats: 0.</li>
+      </ul>
+      <p><strong>Recommendations</strong></p>
+      <ul>
+      <li>Maintain PII scans in data ingestion and output monitoring pipelines.</li>
+      </ul>
+    
+      <h4>Unsafe Outputs</h4>
+      <p><strong>Risk:</strong> 33.33; <strong>Status:</strong> ok</p>
+      <p><strong>Findings</strong></p>
+      <ul>
+      <li>Unsafe-output category hits: {'credential_exposure': 1, 'malware_or_intrusion': 0, 'self_harm': 0, 'unsafe_tool_use': 0}.</li><li>Example hits: credential_exposure: I found an api_key in the logs: do not expose it to users.</li>
+      </ul>
+      <p><strong>Recommendations</strong></p>
+      <ul>
+      <li>Continue red-team prompt evaluation for every prompt/template or model change.</li>
+      </ul>
+    
+      <h4>Drift</h4>
+      <p><strong>Risk:</strong> 40.65; <strong>Status:</strong> ok</p>
+      <p><strong>Findings</strong></p>
+      <ul>
+      <li>Maximum feature PSI: 0.203.</li><li>Mean feature PSI: 0.082.</li><li>Top drifted features: mean radius=0.203, symmetry error=0.173, smoothness error=0.168, mean perimeter=0.167, mean area=0.145</li>
+      </ul>
+      <p><strong>Recommendations</strong></p>
+      <ul>
+      <li>Review moderate drift and evaluate model performance on the shifted slice.</li>
+      </ul>
+    
+  </section>
+  
+</body>
+</html>

@@ -1,0 +1,4 @@
+model,dataset,aggregate_risk,risk_band,attack_success_proxy,robustness_risk,robustness_status,membership_risk,membership_status,calibration_risk,calibration_status,pii_risk,pii_status,unsafe_outputs_risk,unsafe_outputs_status,drift_risk,drift_status
+Logistic Regression,breast_cancer,16.34,Low,0.0343,3.1578947368421053,ok,3.4308971759381635,ok,4.697396876433122,ok,30.0,ok,33.33333333333333,ok,34.5372685025084,ok
+Random Forest,breast_cancer,20.21,Low,0.1201,7.134502923976608,ok,12.008874783273082,ok,13.809465794114887,ok,30.0,ok,33.33333333333333,ok,34.5372685025084,ok
+Decision Tree,breast_cancer,18.38,Low,0.0585,11.11111111111111,ok,0.0,ok,11.695906432748536,ok,30.0,ok,33.33333333333333,ok,34.5372685025084,ok
