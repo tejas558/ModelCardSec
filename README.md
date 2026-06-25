@@ -8,6 +8,8 @@ The project is designed to be easy to demo for a systems/security paper:
 model + dataset -> ModelCardSec scanner -> risk metrics -> security model card
 ```
 
+![ModelCardSec pipeline](results/figure1.png)
+
 ## What is included
 
 - A Python package: `modelcardsec/`
